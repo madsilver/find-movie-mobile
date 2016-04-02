@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Find Movie</string>
-    <string name="action_home">Home</string>
+    <string name="action_home">Início</string>
+    <string name="action_research">Pesquisar</string>
+    <string name="hint_research"></string>
 </resources>
