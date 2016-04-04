@@ -6,10 +6,20 @@
     android:gravity="center"
     android:padding="48dp">
 
-    <View android:layout_width="128dp"
+    <FrameLayout
+        android:layout_width="128dp"
         android:layout_height="128dp"
-        android:background="@drawable/home_circle"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp">
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/home_circle" />
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_search_white_48dp" />
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
