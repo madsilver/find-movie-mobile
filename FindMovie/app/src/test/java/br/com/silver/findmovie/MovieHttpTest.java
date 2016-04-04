@@ -23,7 +23,7 @@ public class MovieHttpTest {
     @Test
     public void testDownloadMovie(){
         String s = "Finding Nemo";
-        Search search = SearchHttp.getMovieFromServer(s);
+        Search search = SearchHttp.getMovieFromServer(SearchHttp.PARAM_TITLE, s);
         Movie[] movies = search.search;
         assertThat(movies, notNullValue());
         assertThat(movies.length, is(not(lessThanOrEqualTo(0))));

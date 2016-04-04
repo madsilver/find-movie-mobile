@@ -1,9 +1,7 @@
 package br.com.silver.findmovie;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +11,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import br.com.silver.findmovie.model.Movie;
+
 public class MainActivity extends AppCompatActivity implements
         SearchView.OnQueryTextListener,
-        MenuItemCompat.OnActionExpandListener{
+        MenuItemCompat.OnActionExpandListener,
+        TitleMovieFragment.OnClickTitleMovie{
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -30,14 +30,14 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                toolbar,
+                mToolbar,
                 R.string.app_name,
                 R.string.app_name
         );
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements
         MenuItem searchItem = menu.findItem(R.id.action_research);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
-        searchView.setQueryHint(getString(R.string.hint_research));
+        searchView.setQueryHint("");
         MenuItemCompat.setOnActionExpandListener(searchItem, this);
 
         return true;
@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements
 
         FragmentManager fm = getSupportFragmentManager();
         if(fm.findFragmentByTag(title) == null){
-            HomeFragment homeFragment = new HomeFragment();
+            Fragment fragment = new HomeFragment();
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content_main, homeFragment, title)
+                    .replace(R.id.content_main, fragment, title)
                     .commit();
 
         }
@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        if(newText.length() > 3){
+            onSetTitleMovie(newText);
+        }
         return false;
     }
 
@@ -122,6 +125,48 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onMenuItemActionCollapse(MenuItem item) {
+        HomeFragment fragment = (HomeFragment) getSupportFragmentManager()
+                .findFragmentByTag(HomeFragment.TAG);
+        if(fragment == null){
+            fragment = new HomeFragment();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_main, fragment, HomeFragment.TAG)
+                    .commit();
+        }
         return true;
+    }
+
+    public void onSetTitleMovie(String title) {
+        TitleMovieFragment fragment = (TitleMovieFragment) getSupportFragmentManager()
+                .findFragmentByTag(TitleMovieFragment.TAG);
+        if(fragment != null){
+            fragment.search(title);
+        } else {
+            fragment = new TitleMovieFragment();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_main, fragment, TitleMovieFragment.TAG)
+                    .commit();
+            //ensure that the transaction is complete
+            getSupportFragmentManager().executePendingTransactions();
+            fragment.search(title);
+        }
+    }
+
+    @Override
+    public void clickTitleMovie(Movie movie) {
+        SinopseFragment fragment = (SinopseFragment) getSupportFragmentManager()
+                .findFragmentByTag(SinopseFragment.TAG);
+        if(fragment == null){
+            fragment = new SinopseFragment();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_main, fragment, SinopseFragment.TAG)
+                    .commit();
+        }
     }
 }

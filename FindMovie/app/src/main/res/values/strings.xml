@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Find Movie</string>
-    <string name="action_home">Início</string>
+    <string name="action_home">Home</string>
+    <string name="action_title">Title</string>
     <string name="action_research">Pesquisar</string>
-    <string name="hint_research"></string>
+    <string name="details">DETALHES</string>
+    <string name="home_title">Busque um filme</string>
+    <string name="home_subtitle">Para buscar um filme é simples, basta digitar o título no campo de busca</string>
 </resources>

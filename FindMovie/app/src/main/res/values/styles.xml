@@ -14,4 +14,18 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginBottom">15sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="Subtitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+    <style name="Detail">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

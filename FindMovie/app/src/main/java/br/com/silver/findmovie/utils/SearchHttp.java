@@ -15,14 +15,21 @@ import br.com.silver.findmovie.model.Search;
 public class SearchHttp {
 
     public static final String BASE_URL = "http://www.omdbapi.com/";
+    public static final String PARAM_TITLE = "s";
+    public static final String PARAM_IMDB = "i";
 
-    public static Search getMovieFromServer(String s){
+    /**
+     * Executa a consulta no servidor
+     * @param s Nome do filme
+     * @return Um objeto Search
+     */
+    public static Search getMovieFromServer(String param, String s){
         OkHttpClient client = new OkHttpClient();
         client.setReadTimeout(5, TimeUnit.SECONDS);
         client.setConnectTimeout(10, TimeUnit.SECONDS);
 
         Request request = new Request.Builder()
-                .url(BASE_URL + "?s="+s)
+                .url(String.format("%s?%s=%s",BASE_URL,param,s))
                 .build();
         try{
             Response response = client.newCall(request).execute();
