@@ -1,5 +1,6 @@
 package br.com.silver.findmovie;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void selectOptionMenu(MenuItem menuItem){
+        if(menuItem == null)
+            return;
         mOptionSelected = menuItem.getItemId();
         menuItem.setChecked(true);
         mDrawerLayout.closeDrawers();
@@ -158,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void clickTitleMovie(Movie movie) {
-        SinopseFragment fragment = (SinopseFragment) getSupportFragmentManager()
+/*        SinopseFragment fragment = (SinopseFragment) getSupportFragmentManager()
                 .findFragmentByTag(SinopseFragment.TAG);
         if(fragment == null){
             fragment = new SinopseFragment();
@@ -167,6 +170,11 @@ public class MainActivity extends AppCompatActivity implements
                     .beginTransaction()
                     .replace(R.id.content_main, fragment, SinopseFragment.TAG)
                     .commit();
-        }
+        }*/
+
+        Intent intent = new Intent(MainActivity.this, SinopseActivity.class);
+        intent.putExtra("movie_id", movie.imdbID);
+        startActivity(intent);
+
     }
 }

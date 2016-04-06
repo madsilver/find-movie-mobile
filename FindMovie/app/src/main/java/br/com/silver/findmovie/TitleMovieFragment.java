@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import br.com.silver.findmovie.model.Movie;
 import br.com.silver.findmovie.model.Search;
@@ -28,6 +30,8 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
     SwipeRefreshLayout mSwipe;
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @Bind(R.id.txtTotalResults)
+    TextView mTextResult;
 
     private Movie[] mMovies;
     private MovieDownloadTask mTask;
@@ -47,6 +51,8 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setNestedScrollingEnabled(false);
+
         return v;
     }
 
@@ -60,6 +66,9 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
         MovieAdapter adapter = new MovieAdapter(getActivity(), mMovies);
         adapter.setMovieClickListener(this);
         mRecyclerView.setAdapter(adapter);
+
+        mTextResult.setText(getResources().getString(R.string.title_results, mMovies.length));
+
     }
 
     private void showProgress(){
@@ -72,8 +81,7 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
     }
 
     public void search(String s){
-        if(mTask == null)
-            mTask = new MovieDownloadTask();
+        mTask = new MovieDownloadTask();
         mTask.execute(s);
     }
 
@@ -105,7 +113,7 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
 
         @Override
         protected Movie[] doInBackground(String... params) {
-            Search search = SearchHttp.getMovieFromServer(SearchHttp.PARAM_TITLE, params[0]);
+            Search search = SearchHttp.getMoviesFromServer(SearchHttp.PARAM_TITLE, params[0]);
             if(search != null)
                 return  search.search;
             return new Movie[0];
@@ -115,6 +123,7 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
         protected void onPostExecute(Movie[] movies){
             super.onPostExecute(movies);
             mSwipe.setRefreshing(false);
+            mTask = null;
             if(movies != null){
                 mMovies = movies;
                 refreshList();

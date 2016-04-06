@@ -7,6 +7,7 @@ import com.squareup.okhttp.Response;
 
 import java.util.concurrent.TimeUnit;
 
+import br.com.silver.findmovie.model.MovieFull;
 import br.com.silver.findmovie.model.Search;
 
 /**
@@ -23,7 +24,7 @@ public class SearchHttp {
      * @param s Nome do filme
      * @return Um objeto Search
      */
-    public static Search getMovieFromServer(String param, String s){
+    public static Search getMoviesFromServer(String param, String s){
         OkHttpClient client = new OkHttpClient();
         client.setReadTimeout(5, TimeUnit.SECONDS);
         client.setConnectTimeout(10, TimeUnit.SECONDS);
@@ -36,6 +37,25 @@ public class SearchHttp {
             String json = response.body().string();
             Gson gson = new Gson();
             return gson.fromJson(json, Search.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static MovieFull getMovieFullFromServer(String param, String s){
+        OkHttpClient client = new OkHttpClient();
+        client.setReadTimeout(5, TimeUnit.SECONDS);
+        client.setConnectTimeout(10, TimeUnit.SECONDS);
+
+        Request request = new Request.Builder()
+                .url(String.format("%s?%s=%s",BASE_URL,param,s))
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            String json = response.body().string();
+            Gson gson = new Gson();
+            return gson.fromJson(json, MovieFull.class);
         } catch (Exception e){
             e.printStackTrace();
         }

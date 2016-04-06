@@ -21,11 +21,29 @@
     </style>
     <style name="Subtitle">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textColor">#888</item>
     </style>
     <style name="Detail">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
+    <style name="TitleMovie">
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_margin">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="DescriptionMovie">
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="Results">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">16sp</item>
+        <item name="android:paddingTop">16sp</item>
     </style>
 
 </resources>

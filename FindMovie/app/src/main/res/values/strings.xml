@@ -6,4 +6,6 @@
     <string name="details">DETALHES</string>
     <string name="home_title">Busque um filme</string>
     <string name="home_subtitle">Para buscar um filme é simples, basta digitar o título no campo de busca</string>
+    <string name="title_results">Encontramos <b>%1$d resultados:</b></string>
+
 </resources>

@@ -1,6 +1,7 @@
 package br.com.silver.findmovie.utils;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.ExecutionException;
+
 import br.com.silver.findmovie.R;
 import br.com.silver.findmovie.model.Movie;
+import br.com.silver.findmovie.model.MovieFull;
+import br.com.silver.findmovie.model.Search;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -55,7 +60,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = mMovies[position];
         Picasso.with(mContext).load(movie.poster).into(holder.imgMovie);
-        holder.txtSinopse.setText(movie.title);
+        holder.txtTitle.setText(movie.title);
+
+        MovieFull movieFull = null;
+        try {
+            movieFull = new MovieFullDownloadTask().execute(movie.imdbID).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        String description = movieFull != null ? movieFull.plot : "No description";
+        holder.txtDescription.setText(description);
     }
 
     @Override
@@ -66,8 +82,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.imgMovie)
         public ImageView imgMovie;
-        @Bind(R.id.txtSinopse)
-        public TextView txtSinopse;
+        @Bind(R.id.txtTitle)
+        public TextView txtTitle;
+        @Bind(R.id.txtDescription)
+        public TextView txtDescription;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -77,5 +95,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public interface OnClickMovieListener{
         void onMovieClick(View v, int position, Movie movie);
+    }
+
+    public class MovieFullDownloadTask extends AsyncTask<String, Void, MovieFull> {
+
+        @Override
+        protected MovieFull doInBackground(String... params) {
+            MovieFull movieFull = SearchHttp.getMovieFullFromServer(SearchHttp.PARAM_IMDB, params[0]);
+            return movieFull;
+        }
     }
 }

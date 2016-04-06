@@ -11,6 +11,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import br.com.silver.findmovie.model.Movie;
+import br.com.silver.findmovie.model.MovieFull;
 import br.com.silver.findmovie.model.Search;
 import br.com.silver.findmovie.utils.SearchHttp;
 
@@ -21,11 +22,18 @@ import br.com.silver.findmovie.utils.SearchHttp;
 public class MovieHttpTest {
 
     @Test
-    public void testDownloadMovie(){
+    public void testDownloadMoviesByTitle(){
         String s = "Finding Nemo";
-        Search search = SearchHttp.getMovieFromServer(SearchHttp.PARAM_TITLE, s);
+        Search search = SearchHttp.getMoviesFromServer(SearchHttp.PARAM_TITLE, s);
         Movie[] movies = search.search;
         assertThat(movies, notNullValue());
         assertThat(movies.length, is(not(lessThanOrEqualTo(0))));
+    }
+
+    @Test
+    public void testDownloadMovieById(){
+        String s = "tt0266543";
+        MovieFull movie = SearchHttp.getMovieFullFromServer(SearchHttp.PARAM_IMDB, s);
+        assertThat(movie, notNullValue());
     }
 }
