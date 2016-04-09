@@ -15,29 +15,28 @@ Os layouts foram criados baseados no Material Design e utilizam o melhor da ling
 ### OkHttp
 Utilizado nas requisições ao servidor, facilita a leitura de conteúdo de texto (JSON,XML,HTML etc), faz cache de requisições repetidas e compactação das respostas com GZIP.
 
-## GSON
+### GSON
 Utilizado para fazer o parser do retorno JSON do servidor em um objeto.
 
-## AsyncTask
+### AsyncTask
 Utilizada para realizar as operações de rede em uma thread separada.
 
-## Picasso
+### Picasso
 Utilizado para carregar imagens da web.
 
-## ButterKnife
+### ButterKnife
 Utilizado para injetar Views em componentes android.
-
-## Data Binding
+### Data Binding
 Utilizada para inserir código java no arquivo de layout, permitindo uma ligação e atualizaçãoautomática entre as classes de modelo e a view.
 
 
 # Componentes
 
-## RecyclerView
+### RecyclerView
 Utilizada como contêiner para o conjunto de views, podendo ser recicladas eficientemente. A RecyclerView é uma versão mais avançada e flexível da ListView.
 
-## CardView
+### CardView
 O CardVew é basicamente um FrameLayout com bordas arrendodas, background e umas sombra.
 
-## CoordinatorLayout
+### CoordinatorLayout
 Mais um componente que se comporta com um FrameLayout mas com capacidade de controlar animações em componentes inseridos nele.
