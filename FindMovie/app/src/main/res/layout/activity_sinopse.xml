@@ -1,36 +1,146 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical">
 
-    </android.support.v4.widget.NestedScrollView>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="4dp">
+            <ImageView
+                android:id="@+id/imgSinopse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
 
-        <android.support.design.widget.CollapsingToolbarLayout
+            <ImageView
+                android:id="@+id/imgReturn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:src="@drawable/ic_arrow_back_white_24dp"
+                android:layout_margin="16dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_share_white_24dp"
+                android:layout_margin="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TitleMovie"
+                android:id="@+id/txtTitleSinopse"
+                android:layout_gravity="bottom"/>
+
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:orientation="vertical">
 
-            <android.support.v7.widget.Toolbar
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+                android:layout_height="wrap_content"
+                android:text="Sinopse:"
+                style="@style/TitleSinopse"/>
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+            <TextView
+                android:id="@+id/txtDescriptionSinopse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DescriptionSinopse"/>
 
-    </android.support.design.widget.AppBarLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider"
+                android:layout_marginTop="16.5dp"
+                android:layout_marginBottom="8.5dp"/>
 
-</android.support.design.widget.CoordinatorLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/txtActors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_people_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtDirector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_videocam_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtWriter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_create_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtReleased"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtRuntime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_av_timer_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtGenre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_movie_creation_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtMetascore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_star_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtAwards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_star_border_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+                <TextView
+                    android:id="@+id/txtCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_place_black_24dp"
+                    style="@style/DetailSinopse"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
