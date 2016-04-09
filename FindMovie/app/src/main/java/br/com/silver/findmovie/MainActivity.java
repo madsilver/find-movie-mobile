@@ -3,6 +3,8 @@ package br.com.silver.findmovie;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); //oculta o título na toolbar
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -153,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements
                     .beginTransaction()
                     .replace(R.id.content_main, fragment, TitleMovieFragment.TAG)
                     .commit();
-            //ensure that the transaction is complete
+            //garante que a transação seja concluída
             getSupportFragmentManager().executePendingTransactions();
             fragment.search(title);
         }
@@ -161,20 +164,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void clickTitleMovie(Movie movie) {
-/*        SinopseFragment fragment = (SinopseFragment) getSupportFragmentManager()
-                .findFragmentByTag(SinopseFragment.TAG);
-        if(fragment == null){
-            fragment = new SinopseFragment();
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content_main, fragment, SinopseFragment.TAG)
-                    .commit();
-        }*/
-
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
         Intent intent = new Intent(MainActivity.this, SinopseActivity.class);
         intent.putExtra("movie_id", movie.imdbID);
-        startActivity(intent);
-
+        ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 }
