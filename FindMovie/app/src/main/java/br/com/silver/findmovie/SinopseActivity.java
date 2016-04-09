@@ -85,7 +85,6 @@ public class SinopseActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        //finish();
         ActivityCompat.finishAfterTransition(this);
     }
 

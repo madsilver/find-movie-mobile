@@ -102,7 +102,7 @@ public class TitleMovieFragment extends Fragment implements MovieAdapter.OnClick
     }
 
     /**
-     *AsyncTask
+     * AsyncTask
      */
     public class MovieDownloadTask extends AsyncTask<String, Void, Movie[]> {
         @Override

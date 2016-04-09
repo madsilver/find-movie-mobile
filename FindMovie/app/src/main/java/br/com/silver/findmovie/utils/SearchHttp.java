@@ -21,6 +21,7 @@ public class SearchHttp {
 
     /**
      * Executa a consulta no servidor
+     * @param param Parâmetro que define a variável de envio (s ou i)
      * @param s Nome do filme
      * @return Um objeto Search
      */
@@ -43,6 +44,12 @@ public class SearchHttp {
         return null;
     }
 
+    /**
+     * Executa a consulta no servidor
+     * @param param Parâmetro que define a variável de envio (s ou i)
+     * @param s Id do filme (imdbID)
+     * @return Um objeto MovieFull
+     */
     public static MovieFull getMovieFullFromServer(String param, String s){
         OkHttpClient client = new OkHttpClient();
         client.setReadTimeout(5, TimeUnit.SECONDS);

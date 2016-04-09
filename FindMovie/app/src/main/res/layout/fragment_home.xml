@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="48dp">
+    android:paddingRight="20dp">
 
     <FrameLayout
         android:layout_width="128dp"

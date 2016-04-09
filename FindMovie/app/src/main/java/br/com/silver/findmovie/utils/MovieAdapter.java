@@ -93,10 +93,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         }
     }
 
+    /**
+     * Interface
+     */
     public interface OnClickMovieListener{
         void onMovieClick(View v, int position, Movie movie);
     }
 
+    /**
+     * AsyncTask
+     */
     public class MovieFullDownloadTask extends AsyncTask<String, Void, MovieFull> {
 
         @Override
