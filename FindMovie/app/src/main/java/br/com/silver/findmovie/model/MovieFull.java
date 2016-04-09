@@ -24,6 +24,8 @@ public class MovieFull extends Movie implements Serializable {
     public String actors;
     @SerializedName("Plot")
     public String plot;
+    @SerializedName("Country")
+    public String country;
     @SerializedName("Language")
     public String language;
     @SerializedName("Awards")
