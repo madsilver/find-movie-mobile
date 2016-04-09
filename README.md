@@ -1,5 +1,6 @@
 # Find Movie Mobile
-Serviço mobile de busca de informações sobre filmes
+Serviço mobile de busca de informações sobre filmes.
+
 Find Movie Mobile é um serviço mobile de busca de informações sobre filmes. O aplicativo é muito simples e intuitivo, na barra superior da tela inicial existe um campo de busca que fará a consulta na base de dados da OMDb API (http://www.omdbapi.com/). O retorno da busca é um JSON que será usado para preencher os dados da lista disponíveis em cards. Ao clicar em um card uma nova tela é aberta trazendo detalhes do filme.
 ## Arquitetura
 O projeto foi desenvolvido na IDE Android Studio. O aplicativo é compatível com Android 4.0 (API level 15) ou superior. O compileSdkVersion e o targetSdkVersion estão definidos para o API 23, o minSdkVersion está definido para o API 15.
