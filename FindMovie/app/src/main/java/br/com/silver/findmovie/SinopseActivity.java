@@ -1,17 +1,18 @@
 package br.com.silver.findmovie;
 
+import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.ExecutionException;
 
+import br.com.silver.findmovie.databinding.ActivitySinopseBinding;
 import br.com.silver.findmovie.model.MovieFull;
 import br.com.silver.findmovie.utils.SearchHttp;
 import butterknife.Bind;
@@ -21,35 +22,16 @@ public class SinopseActivity extends AppCompatActivity implements View.OnClickLi
 
     @Bind(R.id.imgSinopse)
     ImageView imgSinose;
-    @Bind(R.id.txtTitleSinopse)
-    TextView titleSinopse;
     @Bind(R.id.imgReturn)
     ImageView imgReturn;
-    @Bind(R.id.txtDescriptionSinopse)
-    TextView textDescriptionSinopse;
-    @Bind(R.id.txtActors)
-    TextView textActors;
-    @Bind(R.id.txtDirector)
-    TextView textDirector;
-    @Bind(R.id.txtWriter)
-    TextView textWriter;
-    @Bind(R.id.txtReleased)
-    TextView textReleased;
-    @Bind(R.id.txtRuntime)
-    TextView textRuntime;
-    @Bind(R.id.txtGenre)
-    TextView textGenre;
-    @Bind(R.id.txtMetascore)
-    TextView textMetascore;
-    @Bind(R.id.txtAwards)
-    TextView textAwards;
-    @Bind(R.id.txtCountry)
-    TextView textCountry;
+
+    ActivitySinopseBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sinopse);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sinopse);
+
         ButterKnife.bind(this);
         Bundle extras = getIntent().getExtras();
         String movieId = extras.getString("movie_id");
@@ -64,17 +46,7 @@ public class SinopseActivity extends AppCompatActivity implements View.OnClickLi
                     .load(movieFull.poster)
                     .into(imgSinose);
 
-            titleSinopse.setText(movieFull.title);
-            textDescriptionSinopse.setText(movieFull.plot);
-            textActors.setText(movieFull.actors);
-            textDirector.setText(movieFull.director);
-            textWriter.setText(movieFull.writer);
-            textReleased.setText(movieFull.released);
-            textRuntime.setText(movieFull.runtime);
-            textGenre.setText(movieFull.genre);
-            textMetascore.setText(movieFull.metascore);
-            textAwards.setText(movieFull.awards);
-            textCountry.setText(movieFull.country);
+            binding.setMovie(movieFull);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
