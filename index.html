@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Find-movie-mobile by madsilver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Find-movie-mobile</h1>
+      <h2 class="project-tagline">Serviço mobile de busca de informações sobre filmes</h2>
+      <a href="https://github.com/madsilver/find-movie-mobile" class="btn">View on GitHub</a>
+      <a href="https://github.com/madsilver/find-movie-mobile/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/madsilver/find-movie-mobile/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="find-movie-mobile" class="anchor" href="#find-movie-mobile" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Find Movie Mobile</h1>
+
+<p>Serviço mobile de busca de informações sobre filmes.</p>
+
+<p>Find Movie Mobile é um serviço mobile de busca de informações sobre filmes. O aplicativo é muito simples e intuitivo, na barra superior da tela inicial existe um campo de busca que fará a consulta na base de dados da OMDb API (<a href="http://www.omdbapi.com/">http://www.omdbapi.com/</a>). O retorno da busca é um JSON que será usado para preencher os dados da lista disponíveis em cards. Ao clicar em um card uma nova tela é aberta trazendo detalhes do filme.</p>
+
+<h2>
+<a id="arquitetura" class="anchor" href="#arquitetura" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arquitetura</h2>
+
+<p>O projeto foi desenvolvido na IDE Android Studio. O aplicativo é compatível com Android 4.0 (API level 15) ou superior. O compileSdkVersion e o targetSdkVersion estão definidos para o API 23, o minSdkVersion está definido para o API 15.</p>
+
+<h2>
+<a id="material-design" class="anchor" href="#material-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Material Design</h2>
+
+<p>Os layouts foram criados baseados no Material Design e utilizam o melhor da linguagem de design, presentes nas cores, ícones, profundidade dos elementos e transições de telas.</p>
+
+<h1>
+<a id="bibliotecas" class="anchor" href="#bibliotecas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bibliotecas</h1>
+
+<h3>
+<a id="okhttp" class="anchor" href="#okhttp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OkHttp</h3>
+
+<p>Utilizado nas requisições ao servidor, facilita a leitura de conteúdo de texto (JSON,XML,HTML etc), faz cache de requisições repetidas e compactação das respostas com GZIP.</p>
+
+<h3>
+<a id="gson" class="anchor" href="#gson" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GSON</h3>
+
+<p>Utilizado para fazer o parser do retorno JSON do servidor em um objeto.</p>
+
+<h3>
+<a id="asynctask" class="anchor" href="#asynctask" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AsyncTask</h3>
+
+<p>Utilizada para realizar as operações de rede em uma thread separada.</p>
+
+<h3>
+<a id="picasso" class="anchor" href="#picasso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Picasso</h3>
+
+<p>Utilizado para carregar imagens da web.</p>
+
+<h3>
+<a id="butterknife" class="anchor" href="#butterknife" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ButterKnife</h3>
+
+<p>Utilizado para injetar Views em componentes android.</p>
+
+<h3>
+<a id="data-binding" class="anchor" href="#data-binding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Binding</h3>
+
+<p>Utilizada para inserir código java no arquivo de layout, permitindo uma ligação e atualização automática entre as classes de modelo e a view.</p>
+
+<h1>
+<a id="componentes" class="anchor" href="#componentes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Componentes</h1>
+
+<h3>
+<a id="recyclerview" class="anchor" href="#recyclerview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RecyclerView</h3>
+
+<p>Utilizada como contêiner para o conjunto de views, podendo ser recicladas eficientemente. A RecyclerView é uma versão mais avançada e flexível da ListView.</p>
+
+<h3>
+<a id="cardview" class="anchor" href="#cardview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CardView</h3>
+
+<p>O CardVew é basicamente um FrameLayout com bordas arrendodas, background e umas sombra.</p>
+
+<h3>
+<a id="coordinatorlayout" class="anchor" href="#coordinatorlayout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CoordinatorLayout</h3>
+
+<p>Mais um componente que se comporta com um FrameLayout mas com capacidade de controlar animações em componentes inseridos nele.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/madsilver/find-movie-mobile">Find-movie-mobile</a> is maintained by <a href="https://github.com/madsilver">madsilver</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
